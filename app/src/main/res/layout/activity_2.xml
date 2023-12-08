@@ -157,4 +157,18 @@
             android:text="Speichern" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/buttonGoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:paddingStart="24dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="12dp"
+        android:text="Zurück"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
 </LinearLayout>

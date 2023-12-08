@@ -2,6 +2,8 @@ package com.example.myapplication6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -28,10 +30,12 @@ public class Activity2 extends AppCompatActivity {
     private RadioButton radioButtonCategory;
     private Button buttonSaveExpense;
     private Button buttonSaveCategory;
-
+    private Button btnGoBack;
     private EditText editTextAmount;
 
     private EditText editTextCategoryName;
+
+
 
     // Globale ArrayList für die gespeicherten Kategorien
     private List<Expenses> savedExpenses = new ArrayList<>();
@@ -55,6 +59,8 @@ public class Activity2 extends AppCompatActivity {
         editTextAmount = findViewById(R.id.editTextAmount);
 
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button buttonGoBack = findViewById(R.id.buttonGoBack);
 
         // Spinner für die Kategorien
         Spinner categorySpinner = findViewById(R.id.categorySpinner);
@@ -83,7 +89,7 @@ public class Activity2 extends AppCompatActivity {
             // You may need to get the expense amount from an EditText or another view
             double expenseAmount = Double.parseDouble(editTextAmount.getText().toString());
 
-            Expenses expense = new Expenses((float)expenseAmount, selectedCategory);
+            Expenses expense = new Expenses((float) expenseAmount, selectedCategory);
             savedExpenses.add(expense);
 
             // Optional: Ausgabe der gespeicherten Ausgaben zur Überprüfung
@@ -95,12 +101,18 @@ public class Activity2 extends AppCompatActivity {
             String enteredText = editTextCategoryName.getText().toString();
             System.out.println(enteredText);
             if (!enteredText.isEmpty()) {
-                // Hinzufügen des eingegebenen Texts zur globalen ArrayList
                 categories.add(new Categorie(enteredText));
 
                 // Optional: Ausgabe der gespeicherten Kategorien zur Überprüfung
                 System.out.println("Gespeicherte Kategorien: " + categories.toString());
             }
         });
+
+        buttonGoBack.setOnClickListener(view -> {
+            Intent intent = new Intent(Activity2.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
     }
 }
