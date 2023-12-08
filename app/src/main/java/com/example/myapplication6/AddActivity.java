@@ -13,15 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.myapplication6.Data.Categorie;
-import com.example.myapplication6.Data.Expenses;
+import com.example.myapplication6.Data.Category;
+import com.example.myapplication6.Data.Expense;
+import com.example.myapplication6.Data.Singelton.AllData;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class Activity2 extends AppCompatActivity {
+
+public class AddActivity extends AppCompatActivity {
 
 
     private LinearLayout layoutExpense;
@@ -35,15 +36,17 @@ public class Activity2 extends AppCompatActivity {
 
     private EditText editTextCategoryName;
 
+    private AllData data;
 
-
-    // Globale ArrayList für die gespeicherten Kategorien
-    private List<Expenses> savedExpenses = new ArrayList<>();
+    private EditText editTextName;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_2);
+        setContentView(R.layout.activity_add);
+
+        data = AllData.getInstance();
 
         layoutExpense = findViewById(R.id.layoutExpense);
         layoutCategory = findViewById(R.id.layoutCategory);
@@ -58,18 +61,15 @@ public class Activity2 extends AppCompatActivity {
 
         editTextAmount = findViewById(R.id.editTextAmount);
 
+        editTextName = findViewById(R.id.editTextName);
+
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button buttonGoBack = findViewById(R.id.buttonGoBack);
 
-        // Spinner für die Kategorien
         Spinner categorySpinner = findViewById(R.id.categorySpinner);
-        List<Categorie> categories = new ArrayList<>();
-        categories.add(new Categorie("Freizeit"));
-        categories.add(new Categorie("Essen & Trinken"));
-        categories.add(new Categorie("Videospiele"));
 
-        ArrayAdapter<Categorie> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<Category> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data.getCategories());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
 
@@ -83,33 +83,41 @@ public class Activity2 extends AppCompatActivity {
             layoutExpense.setVisibility(View.GONE);
         });
 
+
         buttonSaveExpense.setOnClickListener(view -> {
-            // Code zum Speichern der Ausgaben
             String selectedCategory = categorySpinner.getSelectedItem().toString();
-            // You may need to get the expense amount from an EditText or another view
             double expenseAmount = Double.parseDouble(editTextAmount.getText().toString());
 
-            Expenses expense = new Expenses((float) expenseAmount, selectedCategory);
-            savedExpenses.add(expense);
+            int categoryIdx = data.searchForCategory(selectedCategory);
 
-            // Optional: Ausgabe der gespeicherten Ausgaben zur Überprüfung
-            System.out.println("Gespeicherte Ausgaben: " + savedExpenses.toString());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            String currentDate = sdf.format(new Date());
+
+            Expense expense = new Expense((float) expenseAmount, currentDate, editTextName.getText().toString());
+            System.out.println("selected Category[" + categoryIdx + "]: " + selectedCategory);
+            data.getCategories().get(data.searchForCategory(selectedCategory)).addExpense(expense);
+
+            /* Check
+            for (Category category : data.getCategories()) {
+                System.out.println("idx: " + categoryIdx);
+                System.out.println("Name: " + category.getName());
+                System.out.println("Expenses: " + category.getExpenses());
+            }*/
         });
 
         buttonSaveCategory.setOnClickListener(view -> {
-            // Code zum Speichern der Kategorie
             String enteredText = editTextCategoryName.getText().toString();
             System.out.println(enteredText);
             if (!enteredText.isEmpty()) {
-                categories.add(new Categorie(enteredText));
+                data.getCategories().add(new Category(enteredText));
 
-                // Optional: Ausgabe der gespeicherten Kategorien zur Überprüfung
-                System.out.println("Gespeicherte Kategorien: " + categories.toString());
+                // Check
+                // System.out.println("Gespeicherte Kategorien: " + data.getCategories().toString());
             }
         });
 
         buttonGoBack.setOnClickListener(view -> {
-            Intent intent = new Intent(Activity2.this, MainActivity.class);
+            Intent intent = new Intent(AddActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         });

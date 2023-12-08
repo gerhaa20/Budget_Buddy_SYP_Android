@@ -9,8 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.myapplication6.Data.Categorie;
-import com.example.myapplication6.Data.Expenses;
+import com.example.myapplication6.Data.Category;
+import com.example.myapplication6.Data.Expense;
+import com.example.myapplication6.Data.Singelton.AllData;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -28,10 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
     Button addCategoryOrExpense;
 
+    private AllData data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        data = AllData.getInstance();
 
         barChart = findViewById(R.id.bar_chart);
         barChart2 = findViewById(R.id.bar_chart2);
@@ -41,20 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
-        Categorie categorie = new Categorie("food");
-        categorie.addExpense(new Expenses(5.4f,"1"));
-        categorie.addExpense(new Expenses(10.4f,"1"));
-        categorie.addExpense(new Expenses(15.4f,"1"));
-        categorie.addExpense(new Expenses(20.4f,"1"));
-        categorie.addExpense(new Expenses(30.4f,"1"));
-        categorie.addExpense(new Expenses(35.4f,"1"));
-        categorie.addExpense(new Expenses(55.4f,"1"));
+        // test
+        Category category = data.getCategories().get(0);
 
-        text1.setText(categorie.getName());
-        text2.setText(categorie.getName());
+        text1.setText(category.getName());
+        text2.setText(category.getName());
 
-        for (int i = 0; i < categorie.getExpenses().size(); i++) {
-            float value = categorie.getExpenses().get(i).getAmount();
+        for (int i = 0; i < category.getExpenses().size(); i++) {
+            float value = category.getExpenses().get(i).getAmount();
             BarEntry barEntry = new BarEntry(i,value);
             barEntries.add(barEntry);
         }
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSecondActivity(){
         try {
-            Intent intent = new Intent(this, Activity2.class);
+            Intent intent = new Intent(this, AddActivity.class);
             startActivity(intent);
         }catch (Exception exception){
             System.out.println(exception.getMessage());

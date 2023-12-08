@@ -1,12 +1,15 @@
 package com.example.myapplication6.Data;
 
-public class Expenses {
+public class Expense {
     float amount;
     String date;
 
-    public Expenses(float amount, String date) {
+    String name;
+
+    public Expense(float amount, String date, String name) {
         this.amount = amount;
         this.date = date;
+        this.name = name;
     }
 
     public float getAmount() {
@@ -27,6 +30,6 @@ public class Expenses {
 
     @Override
     public String toString() {
-        return "" + amount;
+        return "amount: " + amount + " date: " + date + "name: " + name +"\n";
     }
 }

@@ -2,11 +2,11 @@ package com.example.myapplication6.Data;
 
 import java.util.ArrayList;
 
-public class Categorie {
+public class Category {
     String name;
-    ArrayList<Expenses> expenses = new ArrayList<>();
+    ArrayList<Expense> expenses = new ArrayList<Expense>();
 
-    public Categorie(String name) {
+    public Category(String name) {
         this.name = name;
     }
 
@@ -18,11 +18,11 @@ public class Categorie {
         this.name = name;
     }
 
-    public ArrayList<Expenses> getExpenses() {
+    public ArrayList<Expense> getExpenses() {
         return expenses;
     }
 
-    public void addExpense(Expenses expense){
+    public void addExpense(Expense expense){
         expenses.add(expense);
     }
 
