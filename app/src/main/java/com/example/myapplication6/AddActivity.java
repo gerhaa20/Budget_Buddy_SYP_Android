@@ -88,13 +88,11 @@ public class AddActivity extends AppCompatActivity {
             String selectedCategory = categorySpinner.getSelectedItem().toString();
             double expenseAmount = Double.parseDouble(editTextAmount.getText().toString());
 
-            int categoryIdx = data.searchForCategory(selectedCategory);
-
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             String currentDate = sdf.format(new Date());
 
             Expense expense = new Expense((float) expenseAmount, currentDate, editTextName.getText().toString());
-            System.out.println("selected Category[" + categoryIdx + "]: " + selectedCategory);
+            //System.out.println("selected Category[" + categoryIdx + "]: " + selectedCategory);
             data.getCategories().get(data.searchForCategory(selectedCategory)).addExpense(expense);
 
             /* Check

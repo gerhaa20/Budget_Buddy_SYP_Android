@@ -52,7 +52,6 @@ public class AllData {
         int reValue = 0;
 
         for(int i = 0; i < getCategories().size()-1; ++i){
-            System.out.println("Input: " + categoryName + "Result: " + getCategories().get(i).getName());
             if(categoryName.equals(getCategories().get(i).getName())){
                 break;
             }else{
@@ -60,7 +59,6 @@ public class AllData {
             }
         }
 
-        System.out.println("!!!!!!!!!!Ende:" + (reValue));
         return reValue;
     }
 }
