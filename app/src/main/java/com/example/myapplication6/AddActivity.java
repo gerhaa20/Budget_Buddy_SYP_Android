@@ -1,7 +1,6 @@
 package com.example.myapplication6;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,19 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
-
+import android.widget.Toast;
 import com.example.myapplication6.Data.Category;
 import com.example.myapplication6.Data.Expense;
 import com.example.myapplication6.Data.Singelton.AllData;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 public class AddActivity extends AppCompatActivity {
-
 
     private LinearLayout layoutExpense;
     private LinearLayout layoutCategory;
@@ -31,15 +27,10 @@ public class AddActivity extends AppCompatActivity {
     private RadioButton radioButtonCategory;
     private Button buttonSaveExpense;
     private Button buttonSaveCategory;
-    private Button btnGoBack;
     private EditText editTextAmount;
-
     private EditText editTextCategoryName;
-
     private AllData data;
-
     private EditText editTextName;
-    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +49,8 @@ public class AddActivity extends AppCompatActivity {
         buttonSaveCategory = findViewById(R.id.buttonSaveCategory);
 
         editTextCategoryName = findViewById(R.id.editTextCategoryName);
-
         editTextAmount = findViewById(R.id.editTextAmount);
-
         editTextName = findViewById(R.id.editTextName);
-
-        RadioGroup radioGroup = findViewById(R.id.radioGroup);
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button buttonGoBack = findViewById(R.id.buttonGoBack);
 
@@ -85,33 +72,36 @@ public class AddActivity extends AppCompatActivity {
 
 
         buttonSaveExpense.setOnClickListener(view -> {
-            String selectedCategory = categorySpinner.getSelectedItem().toString();
-            double expenseAmount = Double.parseDouble(editTextAmount.getText().toString());
+            String nameInput = editTextName.getText().toString().trim();
+            String amountInput = editTextAmount.getText().toString().trim();
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            String currentDate = sdf.format(new Date());
+            if (containsOnlyNumbers(nameInput) || nameInput.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Please enter a valid String", Toast.LENGTH_SHORT).show();
+            } else if(amountInput.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Please enter an amount", Toast.LENGTH_SHORT).show();
+            } else {
+                String selectedCategory = categorySpinner.getSelectedItem().toString();
+                double expenseAmount = Double.parseDouble(editTextAmount.getText().toString());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+                String currentDate = sdf.format(new Date());
+                Expense expense = new Expense((float) expenseAmount, currentDate, nameInput);
+                data.getCategories().get(data.searchForCategory(selectedCategory)).addExpense(expense);
 
-            Expense expense = new Expense((float) expenseAmount, currentDate, editTextName.getText().toString());
-            //System.out.println("selected Category[" + categoryIdx + "]: " + selectedCategory);
-            data.getCategories().get(data.searchForCategory(selectedCategory)).addExpense(expense);
-
-            /* Check
-            for (Category category : data.getCategories()) {
-                System.out.println("idx: " + categoryIdx);
-                System.out.println("Name: " + category.getName());
-                System.out.println("Expenses: " + category.getExpenses());
-            }*/
+                editTextAmount.setText("");
+                editTextName.setText("");
+            }
         });
 
         buttonSaveCategory.setOnClickListener(view -> {
-            String enteredText = editTextCategoryName.getText().toString();
-            System.out.println(enteredText);
-            if (!enteredText.isEmpty()) {
-                data.getCategories().add(new Category(enteredText));
+            String enteredText = editTextCategoryName.getText().toString().trim();
 
-                // Check
-                // System.out.println("Gespeicherte Kategorien: " + data.getCategories().toString());
+            if(containsOnlyNumbers(enteredText) || enteredText.isEmpty()){
+                Toast.makeText(getApplicationContext(), "Please enter a valid String", Toast.LENGTH_SHORT).show();
+            }else{
+                data.getCategories().add(new Category(enteredText));
             }
+
+            editTextCategoryName.setText("");
         });
 
         buttonGoBack.setOnClickListener(view -> {
@@ -119,6 +109,9 @@ public class AddActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+    }
 
+    private static boolean containsOnlyNumbers(String input) {
+        return input.matches("\\d+");
     }
 }
