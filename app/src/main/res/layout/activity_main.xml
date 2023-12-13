@@ -1,95 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_bar">
 
-        <TextView
-            android:id="@+id/kategorieText1"
+        <LinearLayout
+            android:id="@+id/parentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Beispieltext"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:background="#F2F2F2"
-            android:padding="8dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_margin="4dp"
-            android:ellipsize="end"
-            android:singleLine="true" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context=".MainActivity">
 
+            <!-- Hier ist dein aktueller Inhalt, z.B., die Diagramme -->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Die untere Leiste -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bar_chart2"
-            android:layout_width="match_parent"
-            android:layout_height="594dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/kategorieText2"
-            android:layout_width="match_parent"
+        <!-- Platzieren des Buttons -->
+        <Button
+            android:id="@+id/btnChangeView"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
-            android:text="Beispieltext"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:background="#F2F2F2"
-            android:padding="8dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_margin="4dp"
-            android:ellipsize="end"
-            android:singleLine="true" />
+            android:onClick="onButtonClick"
+            android:text="+" />
+
+        <!-- Andere Elemente, die du benötigst, können hier hinzugefügt werden -->
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bar_chart"
-            android:layout_width="match_parent"
-            android:layout_height="158dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnAddCatEx"
-        android:layout_width="61dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:paddingStart="24dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="12dp"
-        android:text="+"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
-
-</LinearLayout>
+</RelativeLayout>

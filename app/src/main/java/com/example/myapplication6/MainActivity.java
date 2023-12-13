@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication6.Data.Category;
@@ -19,16 +22,10 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    BarChart barChart;
-    BarChart barChart2;
-    TextView text1;
-    TextView text2;
-
     Button addCategoryOrExpense;
-
     private AllData data;
 
     @Override
@@ -36,9 +33,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        addCategoryOrExpense = findViewById(R.id.btnChangeView);
         data = AllData.getInstance();
 
-        barChart = findViewById(R.id.bar_chart);
+        addCategoryOrExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSecondActivity();
+            }
+        });
+
+        /*barChart = findViewById(R.id.bar_chart);
         barChart2 = findViewById(R.id.bar_chart2);
         text1 = findViewById(R.id.kategorieText1);
         text2 = findViewById(R.id.kategorieText2);
@@ -72,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         barChart2.setData(new BarData(barDataSet));
 
         // Animation
-        barChart.animateY(2500);
-        barChart2.animateY(2500);
+        barChart.animateY(1500);
+        barChart2.animateY(1500);
 
         // Set description text
         barChart.getDescription().setText("last years expenses");
@@ -87,11 +92,84 @@ public class MainActivity extends AppCompatActivity {
                 /* Setze das Layout der Aktivität auf eine andere XML-Datei
                 //setContentView(R.layout.add_categories);
                 //Intent intent = new Intent(MainActivity.this, AddActivities.class);
-                //startActivity(intent); // Starte die neue Aktivität*/
+                //startActivity(intent); // Starte die neue Aktivität
+                openSecondActivity();
+            }
+        });*/
+        generateDiagrams();
+        //generateAddButton();
+    }
+
+    public void generateDiagrams(){
+        int length = data.getCategories().size();
+        List<Category> allCategories = new ArrayList<>();
+        allCategories = data.getCategories();
+
+        for (int i = 0; i < length; i++) {
+            generateBarChart(allCategories.get(i),i);
+        }
+    }
+
+    public void generateBarChart(Category category, int chartNumber) {
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+
+        for (int i = 0; i < category.getExpenses().size(); i++) {
+            float value = category.getExpenses().get(i).getAmount();
+            BarEntry barEntry = new BarEntry(i, value);
+            barEntries.add(barEntry);
+        }
+
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Expenses");
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        barDataSet.setDrawValues(false);
+
+        BarChart barChart = new BarChart(this);
+        barChart.setId(View.generateViewId());
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 594
+        );
+
+        barChart.setLayoutParams(layoutParams);
+
+        barChart.setData(new BarData(barDataSet));
+        barChart.animateY(1500);
+        barChart.getDescription().setText(category.getName() + " expenses");
+        barChart.getDescription().setTextColor(Color.BLUE);
+
+        //TextView über jedem BarChart
+        TextView textView = new TextView(this);
+        textView.setText("" + category.getName());
+        textView.setTextSize(24); // Textgröße ändern
+        textView.setTextColor(Color.BLACK); // Textfarbe ändern
+        textView.setPadding(8, 8, 8, 8); // Innenabstand setzen
+        textView.setTypeface(null, Typeface.BOLD); // Fettstil setzen
+        textView.setGravity(Gravity.CENTER_VERTICAL); // Zentrierung vertikal
+
+        LinearLayout parentLayout = findViewById(R.id.parentLayout);
+        parentLayout.addView(textView);
+        parentLayout.addView(barChart);
+    }
+
+    /*public void generateAddButton(){
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 20
+        );
+
+        Button button = new Button(this);
+        button.setLayoutParams(layoutParams);
+
+        LinearLayout parentLayout = findViewById(R.id.parentLayout);
+
+        button.setText("+");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 openSecondActivity();
             }
         });
-    }
+    }*/
 
     public void openSecondActivity(){
         try {
