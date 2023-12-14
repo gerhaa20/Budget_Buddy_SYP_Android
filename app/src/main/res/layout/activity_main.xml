@@ -16,14 +16,10 @@
             android:orientation="vertical"
             android:padding="16dp"
             tools:context=".MainActivity">
-
-            <!-- Hier ist dein aktueller Inhalt, z.B., die Diagramme -->
-
         </LinearLayout>
 
     </ScrollView>
 
-    <!-- Die untere Leiste -->
     <LinearLayout
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
@@ -32,7 +28,6 @@
         android:orientation="horizontal"
         android:padding="8dp">
 
-        <!-- Platzieren des Buttons -->
         <LinearLayout
             android:layout_width="164dp"
             android:layout_height="match_parent"
@@ -51,9 +46,6 @@
                 android:onClick="onButtonClick"
                 android:text="+" />
         </LinearLayout>
-
-        <!-- Andere Elemente, die du benötigst, können hier hinzugefügt werden -->
-
     </LinearLayout>
 
 </RelativeLayout>
