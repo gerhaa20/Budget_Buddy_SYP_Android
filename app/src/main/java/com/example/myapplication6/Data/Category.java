@@ -3,11 +3,18 @@ package com.example.myapplication6.Data;
 import java.util.ArrayList;
 
 public class Category {
-    String name;
-    ArrayList<Expense> expenses = new ArrayList<Expense>();
+    private int id;
 
-    public Category(String name) {
+    private String name;
+    private ArrayList<Expense> expenses = new ArrayList<Expense>();
+
+    public Category(String name, int id) {
         this.name = name;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -27,7 +34,5 @@ public class Category {
     }
 
     @Override
-    public String toString() {
-        return "" + name;
-    }
+    public String toString() {return "" + name;}
 }

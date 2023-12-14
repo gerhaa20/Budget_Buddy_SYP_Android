@@ -31,6 +31,7 @@ public class AddActivity extends AppCompatActivity {
     private EditText editTextCategoryName;
     private AllData data;
     private EditText editTextName;
+    private Category selectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,6 @@ public class AddActivity extends AppCompatActivity {
             layoutExpense.setVisibility(View.GONE);
         });
 
-
         buttonSaveExpense.setOnClickListener(view -> {
             String nameInput = editTextName.getText().toString().trim();
             String amountInput = editTextAmount.getText().toString().trim();
@@ -80,12 +80,12 @@ public class AddActivity extends AppCompatActivity {
             } else if(amountInput.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please enter an amount", Toast.LENGTH_SHORT).show();
             } else {
-                String selectedCategory = categorySpinner.getSelectedItem().toString();
+                selectedCategory = (Category) categorySpinner.getSelectedItem();
                 double expenseAmount = Double.parseDouble(editTextAmount.getText().toString());
                 SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
                 String currentDate = sdf.format(new Date());
-                Expense expense = new Expense((float) expenseAmount, currentDate, nameInput);
-                data.getCategories().get(data.searchForCategory(selectedCategory)).addExpense(expense);
+                Expense expense = new Expense((float) expenseAmount, currentDate, nameInput, data.getNextIdExpense(selectedCategory));
+                data.getCategories().get(data.searchForCategoryIndex(selectedCategory.getName())).addExpense(expense);
 
                 editTextAmount.setText("");
                 editTextName.setText("");
@@ -98,7 +98,8 @@ public class AddActivity extends AppCompatActivity {
             if(containsOnlyNumbers(enteredText) || enteredText.isEmpty()){
                 Toast.makeText(getApplicationContext(), "Please enter a valid String", Toast.LENGTH_SHORT).show();
             }else{
-                data.getCategories().add(new Category(enteredText));
+                data.getCategories().add(new Category(enteredText, data.getNextIdCategory()));
+                System.out.println("!!! Added category: " + enteredText + " !!!");
             }
 
             editTextCategoryName.setText("");

@@ -14,7 +14,7 @@ public class AllData {
     public AllData() {
         this.categories = new ArrayList<>();
 
-        Category foodC = new Category("food");
+        Category foodC = new Category("food", 1);
         /*foodC.addExpense(new Expense(5.4f,"1","Starbucks"));
         foodC.addExpense(new Expense(5.4f,"1","Starbucks"));
         foodC.addExpense(new Expense(5.4f,"1","Starbucks"));
@@ -22,7 +22,7 @@ public class AllData {
         foodC.addExpense(new Expense(5.4f,"1","Starbucks"));*/
         categories.add(foodC);
 
-        Category freetimeC = new Category("Freizeit");
+        Category freetimeC = new Category("Freizeit", 2);
         /*freetimeC.addExpense(new Expense(5.4f,"1","FIF"));
         freetimeC.addExpense(new Expense(5.4f,"1","FIF"));
         freetimeC.addExpense(new Expense(5.4f,"1","FIF"));
@@ -43,22 +43,24 @@ public class AllData {
         return categories;
     }
 
-    public static void main(String[] args) {
-        AllData data = new AllData();
-        System.out.println(data.getCategories().get(1).getExpenses());
-    }
+    public int searchForCategoryIndex(String categoryName) {
+        int index = 0;
 
-    public int searchForCategory(String categoryName){
-        int reValue = 0;
-
-        for(int i = 0; i < getCategories().size()-1; ++i){
-            if(categoryName.equals(getCategories().get(i).getName())){
+        for (int i = 0; i < categories.size(); i++) {
+            if (categories.get(i).getName().equals(categoryName)) {
+                index = i;
                 break;
-            }else{
-                reValue++;
             }
         }
 
-        return reValue;
+        return index;
+    }
+
+    public int getNextIdCategory(){
+        return getCategories().size()+1;
+    }
+
+    public int getNextIdExpense(Category selectedCategory){
+        return selectedCategory.getExpenses().size()+1;
     }
 }

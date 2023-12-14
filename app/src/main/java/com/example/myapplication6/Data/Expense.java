@@ -1,23 +1,21 @@
 package com.example.myapplication6.Data;
 
 public class Expense {
-    float amount;
-    String date;
+    private int id;
+    private float amount;
+    private String date;
 
-    String name;
+    private String name;
 
-    public Expense(float amount, String date, String name) {
+    public Expense(float amount, String date, String name, int id) {
         this.amount = amount;
         this.date = date;
         this.name = name;
+        this.id = id;
     }
 
     public float getAmount() {
         return amount;
-    }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
     }
 
     public String getDate() {
@@ -28,8 +26,12 @@ public class Expense {
         this.date = date;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
-        return "amount: " + amount + " date: " + date + "name: " + name +"\n";
+        return "amount: " + amount + " date: " + date + " name: " + name + " id: " + id  +"\n";
     }
 }
