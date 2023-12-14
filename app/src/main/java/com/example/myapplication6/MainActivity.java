@@ -27,6 +27,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     Button addCategoryOrExpense;
     private AllData data;
+    private CategoryDetails categoryDetails;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         barChart.getDescription().setText(category.getName() + " expenses");
         barChart.getDescription().setTextColor(Color.BLUE);
 
-        //---------------TextView über jedem BarChart --> ChatGpt-----------
         TextView textView = new TextView(this);
         textView.setText("" + category.getName());
         textView.setTextSize(24); // Textgröße ändern
@@ -90,12 +91,19 @@ public class MainActivity extends AppCompatActivity {
         textView.setTypeface(null, Typeface.BOLD); // Fettstil setzen
         textView.setGravity(Gravity.CENTER); // Zentrierung horizontal und vertikal
         textView.setBackgroundColor(Color.LTGRAY); // Hintergrundfarbe setzen
-        // -----------------------------------------------------------------
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
+
+        // View --> details
+        barChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCategoryDetails();
+            }
+        });
 
         textParams.setMargins(0, 16, 0, 0); // Setze Abstand oben
         textView.setLayoutParams(textParams);
@@ -108,6 +116,15 @@ public class MainActivity extends AppCompatActivity {
     public void openSecondActivity(){
         try {
             Intent intent = new Intent(this, AddActivity.class);
+            startActivity(intent);
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    public void openCategoryDetails(){
+        try {
+            Intent intent = new Intent(this, CategoryDetails.class);
             startActivity(intent);
         }catch (Exception exception){
             System.out.println(exception.getMessage());
