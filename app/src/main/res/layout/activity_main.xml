@@ -33,12 +33,24 @@
         android:padding="8dp">
 
         <!-- Platzieren des Buttons -->
-        <Button
-            android:id="@+id/btnChangeView"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:onClick="onButtonClick"
-            android:text="+" />
+        <LinearLayout
+            android:layout_width="164dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnChangeView"
+                android:layout_width="61dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:onClick="onButtonClick"
+                android:text="+" />
+        </LinearLayout>
 
         <!-- Andere Elemente, die du benötigst, können hier hinzugefügt werden -->
 
