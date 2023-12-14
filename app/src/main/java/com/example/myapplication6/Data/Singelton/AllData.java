@@ -11,10 +11,12 @@ public class AllData {
 
     private List<Category> categories;
 
+    private int selectedCategoryIndex;
+
     public AllData() {
         this.categories = new ArrayList<>();
 
-        Category foodC = new Category("food", 1);
+        Category foodC = new Category("Food", 1);
         /*foodC.addExpense(new Expense(5.4f,"1","Starbucks"));
         foodC.addExpense(new Expense(5.4f,"1","Starbucks"));
         foodC.addExpense(new Expense(5.4f,"1","Starbucks"));
@@ -62,5 +64,13 @@ public class AllData {
 
     public int getNextIdExpense(Category selectedCategory){
         return selectedCategory.getExpenses().size()+1;
+    }
+
+    public int getSelectedCategoryIndex() {
+        return selectedCategoryIndex;
+    }
+
+    public void setSelectedCategoryIndex(int selectedCategoryIndex) {
+        this.selectedCategoryIndex = selectedCategoryIndex;
     }
 }

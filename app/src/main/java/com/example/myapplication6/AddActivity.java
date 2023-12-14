@@ -99,7 +99,6 @@ public class AddActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please enter a valid String", Toast.LENGTH_SHORT).show();
             }else{
                 data.getCategories().add(new Category(enteredText, data.getNextIdCategory()));
-                System.out.println("!!! Added category: " + enteredText + " !!!");
             }
 
             editTextCategoryName.setText("");

@@ -32,6 +32,8 @@ public class CategoryDetails extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT, 594
         );
 
+        indexOfCategory = allData.getCategories().get(allData.getSelectedCategoryIndex()).getId()-1;
+
         TextView textView = new TextView(this);
         textView.setText("" + allData.getCategories().get(indexOfCategory).getName());
         textView.setTextSize(24); // Textgröße ändern

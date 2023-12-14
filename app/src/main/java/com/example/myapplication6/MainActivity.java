@@ -2,6 +2,7 @@ package com.example.myapplication6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -99,8 +100,10 @@ public class MainActivity extends AppCompatActivity {
 
         // View --> details
         barChart.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
+                data.setSelectedCategoryIndex(view.getId()-1);
                 openCategoryDetails();
             }
         });
