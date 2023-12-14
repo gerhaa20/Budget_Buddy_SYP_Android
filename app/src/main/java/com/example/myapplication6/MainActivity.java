@@ -27,6 +27,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     Button addCategoryOrExpense;
     private AllData data;
+    private CategoryDetails categoryDetails;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,69 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
         addCategoryOrExpense = findViewById(R.id.btnChangeView);
         data = AllData.getInstance();
-
         addCategoryOrExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openSecondActivity();
             }
         });
-
-        /*barChart = findViewById(R.id.bar_chart);
-        barChart2 = findViewById(R.id.bar_chart2);
-        text1 = findViewById(R.id.kategorieText1);
-        text2 = findViewById(R.id.kategorieText2);
-        addCategoryOrExpense = findViewById(R.id.btnAddCatEx);
-
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
-
-        // test
-        Category category = data.getCategories().get(0);
-
-        text1.setText(category.getName());
-        text2.setText(category.getName());
-
-        for (int i = 0; i < category.getExpenses().size(); i++) {
-            float value = category.getExpenses().get(i).getAmount();
-            BarEntry barEntry = new BarEntry(i,value);
-            barEntries.add(barEntry);
-        }
-
-        //Initialize bar data
-        BarDataSet barDataSet = new BarDataSet(barEntries,"Expenses");
-
-        //Set colors
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        //Hide draw Value
-        barDataSet.setDrawValues(false);
-
-        //Set Bar Data
-        barChart.setData(new BarData(barDataSet));
-        barChart2.setData(new BarData(barDataSet));
-
-        // Animation
-        barChart.animateY(1500);
-        barChart2.animateY(1500);
-
-        // Set description text
-        barChart.getDescription().setText("last years expenses");
-        barChart.getDescription().setTextColor(Color.BLUE);
-        barChart2.getDescription().setText("last years expenses");
-        barChart2.getDescription().setTextColor(Color.BLUE);
-
-        addCategoryOrExpense.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /* Setze das Layout der Aktivität auf eine andere XML-Datei
-                //setContentView(R.layout.add_categories);
-                //Intent intent = new Intent(MainActivity.this, AddActivities.class);
-                //startActivity(intent); // Starte die neue Aktivität
-                openSecondActivity();
-            }
-        });*/
         generateDiagrams();
-        //generateAddButton();
     }
 
     public void generateDiagrams(){
@@ -137,39 +83,35 @@ public class MainActivity extends AppCompatActivity {
         barChart.getDescription().setText(category.getName() + " expenses");
         barChart.getDescription().setTextColor(Color.BLUE);
 
-        //TextView über jedem BarChart
         TextView textView = new TextView(this);
         textView.setText("" + category.getName());
         textView.setTextSize(24); // Textgröße ändern
         textView.setTextColor(Color.BLACK); // Textfarbe ändern
         textView.setPadding(8, 8, 8, 8); // Innenabstand setzen
         textView.setTypeface(null, Typeface.BOLD); // Fettstil setzen
-        textView.setGravity(Gravity.CENTER_VERTICAL); // Zentrierung vertikal
+        textView.setGravity(Gravity.CENTER); // Zentrierung horizontal und vertikal
+        textView.setBackgroundColor(Color.LTGRAY); // Hintergrundfarbe setzen
+
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        // View --> details
+        barChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCategoryDetails();
+            }
+        });
+
+        textParams.setMargins(0, 16, 0, 0); // Setze Abstand oben
+        textView.setLayoutParams(textParams);
 
         LinearLayout parentLayout = findViewById(R.id.parentLayout);
         parentLayout.addView(textView);
         parentLayout.addView(barChart);
     }
-
-    /*public void generateAddButton(){
-
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 20
-        );
-
-        Button button = new Button(this);
-        button.setLayoutParams(layoutParams);
-
-        LinearLayout parentLayout = findViewById(R.id.parentLayout);
-
-        button.setText("+");
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSecondActivity();
-            }
-        });
-    }*/
 
     public void openSecondActivity(){
         try {
@@ -180,5 +122,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    public void openCategoryDetails(){
+        try {
+            Intent intent = new Intent(this, CategoryDetails.class);
+            startActivity(intent);
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
+    }
 }
