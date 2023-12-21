@@ -90,6 +90,11 @@ public class AddActivity extends AppCompatActivity {
                 editTextAmount.setText("");
                 editTextName.setText("");
             }
+
+            for (Category category : data.getCategories()) {
+                System.out.println("Name: " + category.getName());
+                System.out.println("Expenses: " + category.getExpenses());
+            }
         });
 
         buttonSaveCategory.setOnClickListener(view -> {
@@ -102,6 +107,14 @@ public class AddActivity extends AppCompatActivity {
             }
 
             editTextCategoryName.setText("");
+
+            for (Category category : data.getCategories()) {
+                System.out.println("Index: " + (category.getId()-1));
+                System.out.println("ID: "+ category.getId());
+                System.out.println("Name: " + category.getName());
+                System.out.println("Expenses: " + category.getExpenses());
+                System.out.println("------------------------");
+            }
         });
 
         buttonGoBack.setOnClickListener(view -> {

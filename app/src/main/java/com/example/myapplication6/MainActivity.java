@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         barDataSet.setDrawValues(false);
 
         BarChart barChart = new BarChart(this);
-        barChart.setId(View.generateViewId());
+        barChart.setId(category.getId());
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, 594
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                data.setSelectedCategoryIndex(view.getId()-1);
+                data.setSelectedView(view.getId());
                 openCategoryDetails();
             }
         });
