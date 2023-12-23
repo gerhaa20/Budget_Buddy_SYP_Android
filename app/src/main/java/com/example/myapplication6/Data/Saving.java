@@ -1,15 +1,21 @@
 package com.example.myapplication6.Data;
 
-public class Expense {
+public class Saving {
     private int id;
     private float amount;
     private String date;
-    private String name;
 
-    public Expense(float amount, String date, String name, int id) {
+    public Saving(int id, float amount, String date) {
+        this.id = id;
         this.amount = amount;
         this.date = date;
-        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -21,12 +27,12 @@ public class Expense {
         return date;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
-        return "amount: " + amount + " date: " + date + " name: " + name + " id: " + id  +"\n";
+        return "Saving{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", date='" + date + '\'' +
+                '}';
     }
 }

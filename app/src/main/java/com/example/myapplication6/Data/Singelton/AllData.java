@@ -2,22 +2,19 @@ package com.example.myapplication6.Data.Singelton;
 
 import com.example.myapplication6.Data.Category;
 import com.example.myapplication6.Data.Expense;
-
+import com.example.myapplication6.Data.Savingplan;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class AllData {
     private static AllData instance = null;
-
     private List<Category> categories;
-
-    private int selectedCategoryID;
-
+    private List<Savingplan> savingplans;
     private int selectedView;
 
     public AllData() {
         this.categories = new ArrayList<>();
+        this.savingplans = new ArrayList<>();
 
         Category foodC = new Category("Food", 1);
         foodC.addExpense(new Expense(5.4f,"1","Starbucks",1));
@@ -33,6 +30,12 @@ public class AllData {
         freetimeC.addExpense(new Expense(7.4f,"1","FIF",3));
 
         categories.add(freetimeC);
+
+        //
+
+        Savingplan carSP = new Savingplan(1,5000,"Auto");
+
+        savingplans.add(carSP);
     }
 
     public static AllData getInstance(){
@@ -59,6 +62,19 @@ public class AllData {
         return index;
     }
 
+    public int searchForSavingplanIndex(String savingplanName) {
+        int index = 0;
+
+        for (int i = 0; i < savingplans.size(); i++) {
+            if (savingplans.get(i).getName().equals(savingplanName)) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
+
     public int getNextIdCategory(){
         int maxId = 0;
         for (Category category : categories) {
@@ -74,6 +90,21 @@ public class AllData {
         return selectedCategory.getExpenses().size()+1;
     }
 
+    public int getNextIdSaving(Savingplan selectedSavingplan){
+        return selectedSavingplan.getSavings().size()+1;
+    }
+
+    public int getNextIdSavingplan(){
+        int maxId = 0;
+        for (Savingplan savingplan : savingplans) {
+            if (savingplan.getId() > maxId) {
+                maxId = savingplan.getId();
+            }
+        }
+
+        return maxId + 1;
+    }
+
     public int getSelectedCategoryID(int id) {
         int reValue = 0;
 
@@ -87,19 +118,15 @@ public class AllData {
         return reValue;
     }
 
-    public int getSelectedCategoryID() {
-        return selectedCategoryID;
-    }
-
-    public void setSelectedCategoryID(int selectedCategoryID) {
-        this.selectedCategoryID = selectedCategoryID;
-    }
-
     public int getSelectedView() {
         return selectedView;
     }
 
     public void setSelectedView(int selectedView) {
         this.selectedView = selectedView;
+    }
+
+    public List<Savingplan> getSavingplans() {
+        return savingplans;
     }
 }

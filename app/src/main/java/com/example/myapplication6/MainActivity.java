@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication6.Data.Category;
-import com.example.myapplication6.Data.Expense;
 import com.example.myapplication6.Data.Singelton.AllData;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -28,8 +27,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     Button addCategoryOrExpense;
     private AllData data;
-    private CategoryDetails categoryDetails;
-    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,9 +27,9 @@
             android:id="@+id/radioButtonExpense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ausgabe"
             android:layout_gravity="center_horizontal"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="Ausgabe" />
 
         <RadioButton
             android:id="@+id/radioButtonCategory"
@@ -37,6 +37,18 @@
             android:layout_height="wrap_content"
             android:text="Kategorie"
             android:gravity="center" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSavingplan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sparplan" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSaving"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Erspartes" />
     </RadioGroup>
 
     <LinearLayout
@@ -85,7 +97,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <!-- TextView neben dem Betrag-Eingabefeld -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -137,7 +148,7 @@
 
         <Button
             android:id="@+id/buttonSaveExpense"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Speichern" />
@@ -190,6 +201,157 @@
             android:text="Speichern" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layoutSavingPlan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Name eingeben:"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="16dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextSavingplanName"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:hint="Sparplan eingeben" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Betrag eingeben:"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="16dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextSavingplanAmount"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:hint="Betrag eingeben" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonSaveSavingplan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Speichern" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSaving"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Betrag eingeben"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="16dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextSavingAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Betrag eingeben"
+                    android:inputType="numberDecimal"
+                    android:layout_gravity="center_horizontal"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sparplan auswählen:"/>
+
+            <Spinner
+                android:id="@+id/savingPlanSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="40dp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonSaveSaving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Speichern" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/buttonGoBack"
         android:layout_width="wrap_content"
@@ -203,5 +365,6 @@
         android:text="Zurück"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
+
 
 </LinearLayout>
