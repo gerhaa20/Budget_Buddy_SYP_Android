@@ -2,6 +2,7 @@ package com.example.myapplication6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,21 +10,13 @@ import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.example.myapplication6.Data.Category;
-import com.example.myapplication6.Data.Expense;
 import com.example.myapplication6.Data.Singelton.AllData;
-import com.github.mikephil.charting.data.BarData;
-
-import java.util.List;
 
 public class CategoryDetails extends AppCompatActivity {
-
     private AllData allData;
-
     private int indexOfCategory;
-
     private int selectedCategory;
+    private Button buttonGoBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +25,13 @@ public class CategoryDetails extends AppCompatActivity {
 
         allData = AllData.getInstance();
 
+        LinearLayout parentLayout = findViewById(R.id.parentLayout);
+
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, 594
         );
 
         indexOfCategory = allData.getSelectedCategoryID(allData.getSelectedView());
-
 
         if (indexOfCategory >= 0 && indexOfCategory < allData.getCategories().size()) {
             TextView textView = new TextView(this);
@@ -57,10 +51,17 @@ public class CategoryDetails extends AppCompatActivity {
             textParams.setMargins(0, 16, 0, 0); // Setze Abstand oben
             textView.setLayoutParams(textParams);
 
-            LinearLayout parentLayout = findViewById(R.id.parentLayout);
             parentLayout.addView(textView);
 
             generateAllExpenses();
+
+            buttonGoBack = findViewById(R.id.buttonGoBack);
+
+            buttonGoBack.setOnClickListener(view -> {
+                Intent intent = new Intent(CategoryDetails.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            });
         }
     }
 
@@ -71,7 +72,6 @@ public class CategoryDetails extends AppCompatActivity {
         );
 
         LinearLayout parentLayout = findViewById(R.id.parentLayout);
-
 
         for (int i = 0; i < allData.getCategories().get(indexOfCategory).getExpenses().size(); i++) {
             TextView textView = new TextView(this);

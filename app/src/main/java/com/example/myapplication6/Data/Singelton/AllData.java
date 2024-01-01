@@ -2,6 +2,7 @@ package com.example.myapplication6.Data.Singelton;
 
 import com.example.myapplication6.Data.Category;
 import com.example.myapplication6.Data.Expense;
+import com.example.myapplication6.Data.Saving;
 import com.example.myapplication6.Data.Savingplan;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class AllData {
     private List<Category> categories;
     private List<Savingplan> savingplans;
     private int selectedView;
+    private float currentPercentageOfGoal; // noch in arbeit - nicht anfassen
 
     public AllData() {
         this.categories = new ArrayList<>();
@@ -31,11 +33,11 @@ public class AllData {
 
         categories.add(freetimeC);
 
-        //
-
-        Savingplan carSP = new Savingplan(1,5000,"Auto");
+        Savingplan carSP = new Savingplan(1,4000,"Auto");
 
         savingplans.add(carSP);
+        carSP.addSaving(new Saving(1,500,"01.01.2023"));
+        carSP.addSaving(new Saving(2,1500,"01.01.2023"));
     }
 
     public static AllData getInstance(){
@@ -43,6 +45,13 @@ public class AllData {
             instance = new AllData();
         }
         return instance;
+    }
+
+    // noch in Arbeit
+    public float getCurrentPercentageOfGoal(int idOfSP){
+        Savingplan savingplan = getSavingplans().get(idOfSP-1);
+        System.out.println(savingplan);
+        return 0;
     }
 
     public List<Category> getCategories() {

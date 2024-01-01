@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
-        // View --> details
         barChart.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
             @Override
