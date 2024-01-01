@@ -20,17 +20,33 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/buttonGoBack"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:paddingStart="24dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="12dp"
-        android:text="Zurück"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imgBtnDeleteCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_category_delete"
+            android:background="@android:color/transparent"
+            android:contentDescription="Delete" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonGoBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Zurück"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
 </LinearLayout>

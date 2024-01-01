@@ -71,6 +71,20 @@ public class AllData {
         return index;
     }
 
+    public void deleteCategory(Category category){
+        if(checkCategoryInList(category)){
+            categories.remove(category);
+        }
+    }
+
+    public boolean checkCategoryInList(Category category){
+        boolean reValue = false;
+        if(categories.contains(category)){
+            reValue = true;
+        }
+        return reValue;
+    }
+
     public int searchForSavingplanIndex(String savingplanName) {
         int index = 0;
 
