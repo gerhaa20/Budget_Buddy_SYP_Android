@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         textParams.setMargins(0, 16, 0, 0); // Setze Abstand oben
         textView.setLayoutParams(textParams);
 
