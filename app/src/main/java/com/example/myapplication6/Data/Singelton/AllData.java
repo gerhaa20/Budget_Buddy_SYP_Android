@@ -19,17 +19,17 @@ public class AllData {
         this.savingplans = new ArrayList<>();
 
         Category foodC = new Category("Food", 1);
-        foodC.addExpense(new Expense(5.4f,"1","Starbucks",1));
-        foodC.addExpense(new Expense(6.4f,"1","Starbucks",2));
-        foodC.addExpense(new Expense(7.4f,"1","Starbucks",3));
-        foodC.addExpense(new Expense(8.4f,"1","Starbucks",4));
-        foodC.addExpense(new Expense(9.4f,"1","Starbucks",5));
+        foodC.addExpense(new Expense(5.4f,"07.05.2023","Starbucks",1));
+        foodC.addExpense(new Expense(6.4f,"18.08.2023","Starbucks",2));
+        foodC.addExpense(new Expense(7.4f,"27.01.2023","Starbucks",3));
+        foodC.addExpense(new Expense(8.4f,"19.12.2023","Starbucks",4));
+        foodC.addExpense(new Expense(9.4f,"01.07.2023","Starbucks",5));
         categories.add(foodC);
 
         Category freetimeC = new Category("Freizeit", 2);
-        freetimeC.addExpense(new Expense(5.4f,"1","FIF",1));
-        freetimeC.addExpense(new Expense(6.4f,"1","FIF",2));
-        freetimeC.addExpense(new Expense(7.4f,"1","FIF",3));
+        freetimeC.addExpense(new Expense(5.4f,"06.12.2023","FIF",1));
+        freetimeC.addExpense(new Expense(6.4f,"09.09.2023","FIF",2));
+        freetimeC.addExpense(new Expense(7.4f,"17.12.2023","FIF",3));
 
         categories.add(freetimeC);
 

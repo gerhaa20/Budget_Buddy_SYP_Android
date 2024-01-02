@@ -7,23 +7,37 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textViewCategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:padding="8dp"
+        android:gravity="center"
+        android:typeface="normal"
+        android:background="@android:color/darker_gray"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <LinearLayout
+        <TableLayout
             android:id="@+id/parentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:layout_marginTop="16dp">
+        </TableLayout>
     </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="bottom">
 
         <ImageButton
             android:id="@+id/imgBtnDeleteCategory"
@@ -46,7 +60,5 @@
             android:text="Zurück"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
-
     </LinearLayout>
-
 </LinearLayout>
