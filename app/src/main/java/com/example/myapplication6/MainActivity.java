@@ -1,14 +1,11 @@
 package com.example.myapplication6;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,12 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         addCategoryOrExpense = findViewById(R.id.btnChangeView);
         data = AllData.getInstance();
-        addCategoryOrExpense.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSecondActivity();
-            }
-        });
+        addCategoryOrExpense.setOnClickListener(view -> openSecondActivity());
         generateDiagrams();
     }
 
@@ -83,25 +75,21 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView = new TextView(this);
         textView.setText("" + category.getName());
-        textView.setTextSize(24); // Textgröße ändern
-        textView.setTextColor(Color.BLACK); // Textfarbe ändern
-        textView.setPadding(8, 8, 8, 8); // Innenabstand setzen
-        textView.setTypeface(null, Typeface.BOLD); // Fettstil setzen
-        textView.setGravity(Gravity.CENTER); // Zentrierung horizontal und vertikal
-        textView.setBackgroundColor(Color.LTGRAY); // Hintergrundfarbe setzen
+        textView.setTextSize(24);
+        textView.setTextColor(Color.BLACK);
+        textView.setPadding(8, 8, 8, 8);
+        textView.setTypeface(null, Typeface.BOLD);
+        textView.setGravity(Gravity.CENTER);
+        textView.setBackgroundColor(Color.LTGRAY);
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
-        barChart.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceType")
-            @Override
-            public void onClick(View view) {
-                data.setSelectedView(view.getId());
-                openCategoryDetails();
-            }
+        barChart.setOnClickListener(view -> {
+            data.setSelectedView(view.getId());
+            openCategoryDetails();
         });
 
         textParams.setMargins(0, 16, 0, 0); // Setze Abstand oben

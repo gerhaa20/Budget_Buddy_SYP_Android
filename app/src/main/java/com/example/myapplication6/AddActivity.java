@@ -193,16 +193,6 @@ public class AddActivity extends AppCompatActivity {
         });
 
         buttonGoBack.setOnClickListener(view -> {
-
-            for(Savingplan savingplan: data.getSavingplans()){
-            System.out.println("ID: " + savingplan.getId());
-            System.out.println("Name: " + savingplan.getName());
-            System.out.println("currentMoney: " + savingplan.getCurrentMoney());
-            System.out.println("goal: " + savingplan.getGoal());
-            System.out.println("savings: " + savingplan.getSavings());
-            System.out.println("-------------------");
-        };
-
             Intent intent = new Intent(AddActivity.this, MainActivity.class);
             startActivity(intent);
             finish();

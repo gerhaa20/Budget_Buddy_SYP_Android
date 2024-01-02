@@ -29,6 +29,14 @@ public class Expense {
         return name;
     }
 
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "amount: " + amount + " date: " + date + " name: " + name + " id: " + id  +"\n";

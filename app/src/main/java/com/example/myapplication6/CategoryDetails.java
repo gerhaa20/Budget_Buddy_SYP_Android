@@ -100,6 +100,13 @@ public class CategoryDetails extends AppCompatActivity {
                         TableRow.LayoutParams.WRAP_CONTENT));
                 textView.setBackgroundColor(Color.WHITE);
                 textView.setMinimumWidth(350);
+
+
+                textView.setOnClickListener(v -> {
+                    allData.setSelectedExpense(selectedCategory.getExpenses().get(expense.getId()-1));
+                    openExpenseDetails();
+                });
+
                 tableRow.addView(textView);
             }
 
@@ -122,5 +129,14 @@ public class CategoryDetails extends AppCompatActivity {
         Intent intent = new Intent(CategoryDetails.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void openExpenseDetails(){
+        try {
+            Intent intent = new Intent(this, ExpenseDetailsActivity.class);
+            startActivity(intent);
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
     }
 }
