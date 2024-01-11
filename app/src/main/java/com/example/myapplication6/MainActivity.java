@@ -23,6 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Button addCategoryOrExpense;
+    Button changeToSavingPlan;
     private AllData data;
 
     @Override
@@ -30,10 +31,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addCategoryOrExpense = findViewById(R.id.btnChangeView);
         data = AllData.getInstance();
+
+        addCategoryOrExpense = findViewById(R.id.btnChangeView);
         addCategoryOrExpense.setOnClickListener(view -> openSecondActivity());
         generateDiagrams();
+
+        changeToSavingPlan = findViewById(R.id.btnChangeToSavingPlan);
+        changeToSavingPlan.setOnClickListener(view -> openSavingPlan());
     }
 
     public void generateDiagrams(){
@@ -112,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
     public void openCategoryDetails(){
         try {
             Intent intent = new Intent(this, CategoryDetails.class);
+            startActivity(intent);
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    public void openSavingPlan(){
+        try {
+            Intent intent = new Intent(this,SavingPlanActivity.class);
             startActivity(intent);
         }catch (Exception exception){
             System.out.println(exception.getMessage());
