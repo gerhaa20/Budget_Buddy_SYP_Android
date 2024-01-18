@@ -16,6 +16,7 @@ import com.example.myapplication6.Data.Category;
 import com.example.myapplication6.Data.Saving;
 import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
+import com.example.myapplication6.MainActivity;
 import com.example.myapplication6.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -46,6 +47,14 @@ public class SavingPlanActivity extends AppCompatActivity {
         addSaving = findViewById(R.id.btnAddSaving);
         addSaving.setOnClickListener(view -> openAddSavings());
         openDiagrams();
+
+        Button buttonGoBack = findViewById(R.id.buttonGoBack);
+
+        buttonGoBack.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     public void openDiagrams(){

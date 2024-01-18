@@ -51,13 +51,6 @@ public class AllData {
         return instance;
     }
 
-    // noch in Arbeit
-    public float getCurrentPercentageOfGoal(int idOfSP){
-        Savingplan savingplan = getSavingplans().get(idOfSP-1);
-        System.out.println(savingplan);
-        return 0;
-    }
-
     public List<Category> getCategories() {
         return categories;
     }
@@ -180,10 +173,6 @@ public class AllData {
 
     public void setSelectedExpense(Expense selectedExpense) {
         this.selectedExpense = selectedExpense;
-    }
-
-    public float getCurrentPercentageOfGoal() {
-        return currentPercentageOfGoal;
     }
 
     public Expense getSelectedExpense() {

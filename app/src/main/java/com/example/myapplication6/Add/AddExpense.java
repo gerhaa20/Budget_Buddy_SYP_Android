@@ -2,6 +2,7 @@ package com.example.myapplication6.Add;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,7 +14,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.myapplication6.Data.Category;
 import com.example.myapplication6.Data.Expense;
+import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
+import com.example.myapplication6.MainActivity;
 import com.example.myapplication6.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -109,6 +112,12 @@ public class AddExpense extends AppCompatActivity {
             }
 
             editTextCategoryName.setText("");
+        });
+
+        buttonGoBack.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 

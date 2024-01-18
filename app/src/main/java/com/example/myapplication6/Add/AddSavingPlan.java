@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.myapplication6.Activitys.SavingPlanActivity;
 import com.example.myapplication6.Data.Saving;
 import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
@@ -124,7 +125,7 @@ public class AddSavingPlan extends AppCompatActivity {
         });
 
         buttonGoBack.setOnClickListener(view -> {
-            Intent intent = new Intent(AddSavingPlan.this, MainActivity.class);
+            Intent intent = new Intent(this, SavingPlanActivity.class);
             startActivity(intent);
             finish();
         });
