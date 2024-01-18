@@ -39,9 +39,9 @@ public class AllData {
         // Sparpläne - savingplans
 
         Savingplan carSP = new Savingplan(1,4000,"Auto");
-        savingplans.add(carSP);
         carSP.addSaving(new Saving(1,500,"01.01.2023"));
         carSP.addSaving(new Saving(2,1500,"01.01.2023"));
+        savingplans.add(carSP);
     }
 
     public static AllData getInstance(){
