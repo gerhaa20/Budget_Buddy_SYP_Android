@@ -40,6 +40,7 @@ public class SavingPlanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saving_plan);
 
+
         data = AllData.getInstance();
 
         addSaving = findViewById(R.id.btnAddSaving);
