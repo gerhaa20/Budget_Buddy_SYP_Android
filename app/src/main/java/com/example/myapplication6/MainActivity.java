@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.myapplication6.Add.AddExpense;
+import com.example.myapplication6.Activitys.SavingPlanActivity;
 import com.example.myapplication6.Data.Category;
 import com.example.myapplication6.Data.Singelton.AllData;
+import com.example.myapplication6.Details.CategoryDetails;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSecondActivity(){
         try {
-            Intent intent = new Intent(this, AddActivity.class);
+            Intent intent = new Intent(this, AddExpense.class);
             startActivity(intent);
         }catch (Exception exception){
             System.out.println(exception.getMessage());
@@ -125,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSavingPlan(){
         try {
-            Intent intent = new Intent(this,SavingPlanActivity.class);
+            Intent intent = new Intent(this, SavingPlanActivity.class);
             startActivity(intent);
         }catch (Exception exception){
             System.out.println(exception.getMessage());

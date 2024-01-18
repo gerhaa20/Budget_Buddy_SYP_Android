@@ -1,4 +1,4 @@
-package com.example.myapplication6;
+package com.example.myapplication6.Details;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.myapplication6.Data.Category;
 import com.example.myapplication6.Data.Expense;
 import com.example.myapplication6.Data.Singelton.AllData;
+import com.example.myapplication6.MainActivity;
+import com.example.myapplication6.R;
 
 public class CategoryDetails extends AppCompatActivity {
     private AllData allData;

@@ -1,4 +1,4 @@
-package com.example.myapplication6;
+package com.example.myapplication6.Add;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
@@ -17,11 +17,14 @@ import com.example.myapplication6.Data.Expense;
 import com.example.myapplication6.Data.Saving;
 import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
+import com.example.myapplication6.MainActivity;
+import com.example.myapplication6.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class AddActivity extends AppCompatActivity {
+public class AddExpense extends AppCompatActivity {
     private LinearLayout layoutExpense;
     private LinearLayout layoutCategory;
     private LinearLayout layoutSavingPlan;
@@ -193,7 +196,7 @@ public class AddActivity extends AppCompatActivity {
         });
 
         buttonGoBack.setOnClickListener(view -> {
-            Intent intent = new Intent(AddActivity.this, MainActivity.class);
+            Intent intent = new Intent(AddExpense.this, MainActivity.class);
             startActivity(intent);
             finish();
         });

@@ -1,8 +1,10 @@
-package com.example.myapplication6;
+package com.example.myapplication6.Add;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.myapplication6.R;
 
 public class AddSavingPlan extends AppCompatActivity {
 

@@ -1,10 +1,13 @@
-package com.example.myapplication6;
+package com.example.myapplication6.Activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.example.myapplication6.Add.AddSavingPlan;
+import com.example.myapplication6.R;
 
 public class SavingPlanActivity extends AppCompatActivity {
 
@@ -21,7 +24,7 @@ public class SavingPlanActivity extends AppCompatActivity {
 
     public void openAddSavings(){
         try {
-            Intent intent = new Intent(this,AddSavingPlan.class);
+            Intent intent = new Intent(this, AddSavingPlan.class);
             startActivity(intent);
         }catch (Exception exception){
             System.out.println(exception.getMessage());

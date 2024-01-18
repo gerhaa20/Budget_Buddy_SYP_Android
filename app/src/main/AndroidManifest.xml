@@ -13,19 +13,19 @@
         android:theme="@style/Theme.MyApplication6"
         tools:targetApi="31">
         <activity
-            android:name=".AddSavingPlan"
+            android:name=".Add.AddSavingPlan"
             android:exported="false" />
         <activity
-            android:name=".SavingPlanActivity"
+            android:name=".Activitys.SavingPlanActivity"
             android:exported="false" />
         <activity
-            android:name=".ExpenseDetailsActivity"
+            android:name=".Details.ExpenseDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".CategoryDetails"
+            android:name=".Details.CategoryDetails"
             android:exported="false" />
         <activity
-            android:name=".AddActivity"
+            android:name=".Add.AddExpense"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
