@@ -70,18 +70,34 @@ public class SavingPlanActivity extends AppCompatActivity {
     public void generateBarChart(Savingplan savingplan) {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
+        float sum = 0.0f;
+        float goal = savingplan.getGoal();
+        float percent_saved = 0.0f;
+        float percent_to_goal = 0.0f;
 
         for (int i = 0; i < savingplan.getSavings().size(); i++) {
-            float value = savingplan.getSavings().get(i).getAmount();
+
+            sum += savingplan.getSavings().get(i).getAmount();
+
+            /*float value = savingplan.getSavings().get(i).getAmount();
             PieEntry pieEntry = new PieEntry(i, value);
-            pieEntries.add(pieEntry);
+            pieEntries.add(pieEntry);*/
         }
+
+        percent_saved = (sum * 100) / goal;
+        percent_to_goal = 100 - percent_saved;
+
+        pieEntries.add(new PieEntry(percent_saved));
+        pieEntries.add(new PieEntry(percent_to_goal));
+
+        System.out.println("##########################SAVING###############################: " + sum);
 
         //pieEntries.add(new PieEntry(1,50.0));
 
-        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Savingplan");
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, " Savingplan");
+        pieDataSet.setColors(Color.GREEN,Color.RED);
         pieDataSet.setDrawValues(false);
+
 
         PieChart pieChart = new PieChart(this);
         pieChart.setId(savingplan.getId());
@@ -94,8 +110,9 @@ public class SavingPlanActivity extends AppCompatActivity {
 
         pieChart.setData(new PieData(pieDataSet));
         pieChart.animateY(1500);
-        pieChart.getDescription().setText(savingplan.getName() + "Savingplan");
-        pieChart.getDescription().setTextColor(Color.BLUE);
+        //pieChart.getDescription().setText(savingplan.getName() + " Savingplan");
+        pieChart.getDescription().setTextColor(Color.WHITE);
+
 
         TextView textView = new TextView(this);
         textView.setText("" + savingplan.getName());
