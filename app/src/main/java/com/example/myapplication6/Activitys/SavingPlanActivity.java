@@ -10,7 +10,6 @@ import com.example.myapplication6.Add.AddSavingPlan;
 import com.example.myapplication6.R;
 
 public class SavingPlanActivity extends AppCompatActivity {
-
     Button addSaving;
 
     @Override
