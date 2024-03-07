@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void generateDiagrams(){
         int length = data.getCategories().size();
-        List<Category> allCategories = new ArrayList<>();
+        List<Category> allCategories;
         allCategories = data.getCategories();
 
         for (int i = 0; i < length; i++) {

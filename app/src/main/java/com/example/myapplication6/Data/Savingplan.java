@@ -7,13 +7,12 @@ public class Savingplan {
     private float goal;
     private float currentMoney;
     private String name;
-
     private ArrayList<Saving> savings = new ArrayList<Saving>();
 
     public Savingplan(int id, float goal, String name) {
         this.id = id;
         this.goal = goal;
-        this.currentMoney = 0;
+        this.currentMoney = 0f;
         this.name = name;
     }
 

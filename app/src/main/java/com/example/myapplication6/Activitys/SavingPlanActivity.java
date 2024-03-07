@@ -12,24 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication6.Add.AddSavingPlan;
-import com.example.myapplication6.Data.Category;
-import com.example.myapplication6.Data.Saving;
 import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
 import com.example.myapplication6.MainActivity;
 import com.example.myapplication6.R;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SavingPlanActivity extends AppCompatActivity {
@@ -59,7 +51,7 @@ public class SavingPlanActivity extends AppCompatActivity {
 
     public void openDiagrams(){
         int length = data.getSavingplans().size();
-        List<Savingplan> allSavingplans = new ArrayList<>();
+        List<Savingplan> allSavingplans;
         allSavingplans = data.getSavingplans();
 
         for (int i = 0; i < length; i++) {
@@ -70,18 +62,35 @@ public class SavingPlanActivity extends AppCompatActivity {
     public void generateBarChart(Savingplan savingplan) {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
-
+        float totalAmount = 0f;
         for (int i = 0; i < savingplan.getSavings().size(); i++) {
             float value = savingplan.getSavings().get(i).getAmount();
-            PieEntry pieEntry = new PieEntry(i, value);
-            pieEntries.add(pieEntry);
+            totalAmount += value;
         }
 
-        //pieEntries.add(new PieEntry(1,50.0));
+        float remainingAmount = savingplan.getGoal() - totalAmount;
 
-        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Savingplan");
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        pieDataSet.setDrawValues(false);
+        pieEntries.add(new PieEntry(totalAmount, "Gespart"));
+
+        if (remainingAmount > 0) {
+            pieEntries.add(new PieEntry(remainingAmount, "Fehlt"));
+        }
+
+        int greenColor = Color.parseColor("#00FF00");
+        int redColor = Color.parseColor("#FF0000");
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        ArrayList<Integer> valueColors = new ArrayList<>();
+
+        for (int i = 0; i < pieEntries.size(); i++) {
+            if (i < pieEntries.size() - 1) {
+                colors.add(greenColor);
+                valueColors.add(greenColor);
+            } else {
+                colors.add(redColor);
+                valueColors.add(redColor);
+            }
+        }
 
         PieChart pieChart = new PieChart(this);
         pieChart.setId(savingplan.getId());
@@ -92,10 +101,25 @@ public class SavingPlanActivity extends AppCompatActivity {
 
         pieChart.setLayoutParams(layoutParams);
 
-        pieChart.setData(new PieData(pieDataSet));
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
+        pieDataSet.setColors(colors);
+        pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        pieDataSet.setValueTextColor(Color.BLACK);
+        pieDataSet.setSliceSpace(2);
+        pieDataSet.setValueLinePart1OffsetPercentage(10);
+        pieDataSet.setValueLinePart1Length(0.6f);
+        pieDataSet.setValueLinePart2Length(0.5f);
+
+        PieData pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+
+        pieData.setValueTextSize(13f);
+        pieData.setValueTextColor(Color.BLACK);
+        pieData.setValueTypeface(Typeface.DEFAULT_BOLD);
+
         pieChart.animateY(1500);
-        pieChart.getDescription().setText(savingplan.getName() + "Savingplan");
-        pieChart.getDescription().setTextColor(Color.BLUE);
+        pieChart.getDescription().setText("");
 
         TextView textView = new TextView(this);
         textView.setText("" + savingplan.getName());
@@ -113,47 +137,22 @@ public class SavingPlanActivity extends AppCompatActivity {
 
         pieChart.setOnClickListener(view -> {
             data.setSelectedView(view.getId());
-            //openCategoryDetails();
         });
 
-        textParams.setMargins(0, 16, 0, 0); // Setze Abstand oben
+        textParams.setMargins(0, 16, 0, 0);
         textView.setLayoutParams(textParams);
 
         LinearLayout parentLayout = findViewById(R.id.savingLayout);
         parentLayout.addView(textView);
         parentLayout.addView(pieChart);
-    }
 
-    /*
-    public void generateDiagrams(){
-        ArrayList<PieEntry> pieEntries = new ArrayList<>();
-
-        pieEntries.add(new PieEntry(1,2));
-        pieEntries.add(new PieEntry(3,4));
-        pieEntries.add(new PieEntry(6,2));
-        pieEntries.add(new PieEntry(2,1));
-
-        PieDataSet pieDataSet = new PieDataSet(pieEntries,"Savings");
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        pieDataSet.setDrawValues(false);
-
-        PieChart pieChart = new PieChart(this);
-        pieChart.setId(0);
-
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 594
+        LinearLayout.LayoutParams hintParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
-        pieChart.setLayoutParams(layoutParams);
-
-        pieChart.setData(new PieData(pieDataSet));
-        pieChart.animateY(1500);
-        pieChart.getDescription().setText("Savings");
-        pieChart.getDescription().setTextColor(Color.BLUE);
-
-        LinearLayout parentLayout = findViewById(R.id.savingLayout);
-        parentLayout.addView(pieChart);
-    }*/
+        hintParams.setMargins(0, 16, 0, 0);
+    }
 
     public void openAddSavings(){
         try {

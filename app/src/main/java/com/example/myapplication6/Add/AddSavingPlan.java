@@ -17,7 +17,6 @@ import com.example.myapplication6.Activitys.SavingPlanActivity;
 import com.example.myapplication6.Data.Saving;
 import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
-import com.example.myapplication6.MainActivity;
 import com.example.myapplication6.R;
 
 import java.text.SimpleDateFormat;
@@ -83,7 +82,7 @@ public class AddSavingPlan extends AppCompatActivity {
             } else if (nameInput.contains("\\n")) {
                 Toast.makeText(getApplicationContext(), "Amount cannot contain a newline character", Toast.LENGTH_SHORT).show();
             } else {
-                // noch in Arbeit
+                // noch in Arbeit !!!!!!!!!!!!!!!!!!!!!!!!!!!
                 float expenseAmount = Float.parseFloat(editTextSavingplanAmount.getText().toString());
                 SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
                 data.getSavingplans().add(new Savingplan(data.getNextIdSavingplan(), expenseAmount, nameInput));
