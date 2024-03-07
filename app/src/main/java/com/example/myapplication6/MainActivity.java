@@ -134,4 +134,8 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(exception.getMessage());
         }
     }
+
+    public void openBarCodeScanner(){
+
+    }
 }
