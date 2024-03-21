@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication6.Add.AddSavingPlan;
-import com.example.myapplication6.BarCode;
+import com.example.myapplication6.BarCode.BarCode;
 import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
 import com.example.myapplication6.MainActivity;

@@ -1,4 +1,4 @@
-package com.example.myapplication6;
+package com.example.myapplication6.BarCode;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.myapplication6.R;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
