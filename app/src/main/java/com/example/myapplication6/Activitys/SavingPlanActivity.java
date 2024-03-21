@@ -12,29 +12,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication6.Add.AddSavingPlan;
-import com.example.myapplication6.Data.Category;
-import com.example.myapplication6.Data.Saving;
+import com.example.myapplication6.BarCode;
 import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
 import com.example.myapplication6.MainActivity;
 import com.example.myapplication6.R;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SavingPlanActivity extends AppCompatActivity {
     Button addSaving;
     AllData data;
+    Button barcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +37,7 @@ public class SavingPlanActivity extends AppCompatActivity {
 
 
         data = AllData.getInstance();
-
+        barcode = findViewById(R.id.btnBarCode);
         addSaving = findViewById(R.id.btnAddSaving);
         addSaving.setOnClickListener(view -> openAddSavings());
         openDiagrams();
@@ -52,6 +46,12 @@ public class SavingPlanActivity extends AppCompatActivity {
 
         buttonGoBack.setOnClickListener(view -> {
             Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        barcode.setOnClickListener(v -> {
+            Intent intent = new Intent(this, BarCode.class);
             startActivity(intent);
             finish();
         });
@@ -180,4 +180,5 @@ public class SavingPlanActivity extends AppCompatActivity {
             System.out.println(exception.getMessage());
         }
     }
+
 }

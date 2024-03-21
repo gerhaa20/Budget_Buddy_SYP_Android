@@ -17,7 +17,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
@@ -28,6 +28,12 @@
             android:layout_gravity="center_horizontal"
             android:gravity="bottom"
             android:text="+" />
+
+        <Button
+            android:id="@+id/btnBarCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
     </LinearLayout>
 
     <Button
