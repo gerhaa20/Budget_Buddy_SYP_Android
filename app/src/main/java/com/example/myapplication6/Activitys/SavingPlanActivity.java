@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication6.Add.AddSavingPlan;
+import com.example.myapplication6.BarCode;
 import com.example.myapplication6.Data.Savingplan;
 import com.example.myapplication6.Data.Singelton.AllData;
 import com.example.myapplication6.MainActivity;
@@ -27,6 +28,8 @@ import java.util.List;
 public class SavingPlanActivity extends AppCompatActivity {
     Button addSaving;
     AllData data;
+    // Barcode (delete later)
+    Button barcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class SavingPlanActivity extends AppCompatActivity {
         data = AllData.getInstance();
 
         addSaving = findViewById(R.id.btnAddSaving);
+        // Barcode (delete later)
+        barcode = findViewById(R.id.btnBarCode);
         addSaving.setOnClickListener(view -> openAddSavings());
         openDiagrams();
 
@@ -44,6 +49,13 @@ public class SavingPlanActivity extends AppCompatActivity {
 
         buttonGoBack.setOnClickListener(view -> {
             Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        //barcode (delete later)
+        barcode.setOnClickListener(v -> {
+            Intent intent = new Intent(this, BarCode.class);
             startActivity(intent);
             finish();
         });
