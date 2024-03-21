@@ -37,18 +37,6 @@
             android:layout_height="wrap_content"
             android:text="Kategorie"
             android:gravity="center" />
-
-        <RadioButton
-            android:id="@+id/radioButtonSavingplan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sparplan" />
-
-        <RadioButton
-            android:id="@+id/radioButtonSaving"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Erspartes" />
     </RadioGroup>
 
     <LinearLayout
