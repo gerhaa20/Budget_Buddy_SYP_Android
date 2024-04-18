@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.example.myapplication6.BarCode.BarCode;
 import com.example.myapplication6.Data.Category;
 import com.example.myapplication6.Data.Expense;
 import com.example.myapplication6.Data.Singelton.AllData;
@@ -22,6 +24,7 @@ public class CategoryDetails extends AppCompatActivity {
     private Category selectedCategory;
     private Button buttonGoBack;
     private ImageButton imgBtnDeleteCategory;
+    private Button barcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class CategoryDetails extends AppCompatActivity {
         selectedCategory = allData.getCategories().get(indexOfCategory);
 
         TextView textViewCategoryName = findViewById(R.id.textViewCategoryName);
+        barcode = findViewById(R.id.btnBarCode);
+
         textViewCategoryName.setText(selectedCategory.getName());
 
         if (indexOfCategory >= 0 && indexOfCategory < allData.getCategories().size()) {
@@ -49,6 +54,12 @@ public class CategoryDetails extends AppCompatActivity {
         imgBtnDeleteCategory.setOnClickListener(view -> {
             allData.deleteCategory(selectedCategory);
             saveAndClose();
+        });
+
+        barcode.setOnClickListener(v -> {
+            Intent intent = new Intent(this, BarCode.class);
+            startActivity(intent);
+            finish();
         });
     }
 

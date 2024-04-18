@@ -29,7 +29,6 @@ public class SavingPlanActivity extends AppCompatActivity {
     Button addSaving;
     AllData data;
     // Barcode (delete later)
-    Button barcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,6 @@ public class SavingPlanActivity extends AppCompatActivity {
 
         addSaving = findViewById(R.id.btnAddSaving);
         // Barcode (delete later)
-        barcode = findViewById(R.id.btnBarCode);
         addSaving.setOnClickListener(view -> openAddSavings());
         openDiagrams();
 
@@ -53,12 +51,6 @@ public class SavingPlanActivity extends AppCompatActivity {
             finish();
         });
 
-        //barcode (delete later)
-        barcode.setOnClickListener(v -> {
-            Intent intent = new Intent(this, BarCode.class);
-            startActivity(intent);
-            finish();
-        });
     }
 
     public void openDiagrams(){

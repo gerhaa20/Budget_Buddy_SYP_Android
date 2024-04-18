@@ -56,9 +56,16 @@
             android:id="@+id/buttonGoBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="center_horizontal"
             android:text="Zurück"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnBarCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Scan" />
     </LinearLayout>
 </LinearLayout>
